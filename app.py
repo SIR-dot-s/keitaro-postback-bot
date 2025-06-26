@@ -20,40 +20,26 @@ def postback():
     sub5 = params.get("sub_id_5", "-")
     sub6 = params.get("sub_id_6", "-")
 
-    message = (
-        f"🔔 Новая регистрация!
+   message = (
+    f"🔔 Новая регистрация!\n"
+    f"📢 ОФФЕР: {offer}\n"
+    f"📋 КАМПАНИЯ: {campaign}\n"
+    f"💰 CPA: {revenue} $\n"
+    f"🧾 ID КАБА: {sub4}\n"
+    f"🏷️ Нейминг: {sub5}\n"
+    f"🧩 Адсет: {sub6}"
+)
 
-"
-        f"📢 ОФФЕР: {offer}
-"
-        f"📋 КАМПАНИЯ: {campaign}
-"
-        f"💰 CPA: {revenue} $
-"
-        f"🧾 ID КАБА: {sub4}
-"
-        f"🏷️ Нейминг: {sub5}
-"
+if params.get("status") == "deposit":
+    message = (
+        f"✅ Новый депозит!\n"
+        f"📢 ОФФЕР: {offer}\n"
+        f"📋 КАМПАНИЯ: {campaign}\n"
+        f"💰 CPA: {revenue} $\n"
+        f"🧾 ID КАБА: {sub4}\n"
+        f"🏷️ Нейминг: {sub5}\n"
         f"🧩 Адсет: {sub6}"
     )
-
-    if params.get("status") == "lead":
-        message = (
-            f"🟡 Новый лид!
-
-"
-            f"📢 ОФФЕР: {offer}
-"
-            f"📋 КАМПАНИЯ: {campaign}
-"
-            f"💰 CPA: {revenue} $
-"
-            f"🧾 ID КАБА: {sub4}
-"
-            f"🏷️ Нейминг: {sub5}
-"
-            f"🧩 Адсет: {sub6}"
-        )
 
     response = requests.post(
         f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage",

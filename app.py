@@ -15,30 +15,27 @@ def postback():
 
     campaign = params.get("campaign_name", "-")
     offer = params.get("offer_name", "-")
-    revenue = params.get("revenue", "-")
-    sub4 = params.get("sub_id_4", "-")
-    sub5 = params.get("sub_id_5", "-")
-    sub6 = params.get("sub_id_6", "-")
+    campaign_id = params.get("sub_id_5", "-")
+    campaign_name = params.get("sub_id_6", "-")
+    ad_name = params.get("sub_id_2", "-")
 
     message = (
-        f"🔔 Новая регистрация!\n"
-        f"📢 ОФФЕР: {offer}\n"
-        f"📋 КАМПАНИЯ: {campaign}\n"
-        f"💰 CPA: {revenue} $\n"
-        f"🧾 ID КАБА: {sub4}\n"
-        f"🏷️ Нейминг: {sub5}\n"
-        f"🧩 Адсет: {sub6}"
+        f"🔔 РЕГИСТРАЦИЯ 🔔\n"
+        f"{campaign}\n"
+        f"ОФФЕР: {offer}\n"
+        f"ID КАБА: {campaign_id}\n"
+        f"COMPANY NAME: {campaign_name}\n"
+        f"ID KREO: {ad_name}"
     )
 
     if params.get("status") == "deposit":
         message = (
-            f"✅ Новый депозит!\n"
-            f"📢 ОФФЕР: {offer}\n"
-            f"📋 КАМПАНИЯ: {campaign}\n"
-            f"💰 CPA: {revenue} $\n"
-            f"🧾 ID КАБА: {sub4}\n"
-            f"🏷️ Нейминг: {sub5}\n"
-            f"🧩 Адсет: {sub6}"
+            f"🚀 ДЕПОЗИТ 🚀\n"
+            f"{campaign}\n"
+            f"ОФФЕР: {offer}\n"
+            f"ID КАБА: {campaign_id}\n"
+            f"COMPANY NAME: {campaign_name}\n"
+            f"ID KREO: {ad_name}"
         )
 
     response = requests.post(

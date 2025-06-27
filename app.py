@@ -18,17 +18,18 @@ def postback():
     campaign_id = params.get("sub_id_5", "-")
     campaign_name = params.get("sub_id_6", "-")
     ad_name = params.get("sub_id_2", "-")
+    status = params.get("status", "-")
 
-    message = (
-        f"🔔 РЕГИСТРАЦИЯ 🔔\n"
-        f"{campaign}\n"
-        f"ОФФЕР: {offer}\n"
-        f"ID КАБА: {campaign_id}\n"
-        f"COMPANY NAME: {campaign_name}\n"
-        f"ID KREO: {ad_name}"
-    )
-
-    if params.get("status") == "deposit":
+    if status == "lead":
+        message = (
+            f"🔔 РЕГИСТРАЦИЯ 🔔\n"
+            f"{campaign}\n"
+            f"ОФФЕР: {offer}\n"
+            f"ID КАБА: {campaign_id}\n"
+            f"COMPANY NAME: {campaign_name}\n"
+            f"ID KREO: {ad_name}"
+        )
+    elif status == "deposit":
         message = (
             f"🚀 ДЕПОЗИТ 🚀\n"
             f"{campaign}\n"
@@ -37,6 +38,8 @@ def postback():
             f"COMPANY NAME: {campaign_name}\n"
             f"ID KREO: {ad_name}"
         )
+    else:
+        return "Unknown status, ignored", 200
 
     response = requests.post(
         f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage",
